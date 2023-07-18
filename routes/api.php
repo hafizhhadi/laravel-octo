@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TokenController;
+use App\Http\Controllers\API\MovieController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,16 +15,9 @@ use App\Http\Controllers\TokenController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::group(array('middleware' => ['custom_auth']), function ()
+Route::prefix('v1')->group(function()
 {
-    Route::apiResource('token', TokenController::class);
-    Route::post('/token/topup', [TokenController::class, 'store']);
+    Route::controller(MovieController::class)->group(function () {
+        Route::post('/movie/store', 'create');
+    });
 });
-
-
-
-
