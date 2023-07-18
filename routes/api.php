@@ -18,6 +18,7 @@ use App\Http\Controllers\API\MovieController;
 Route::prefix('v1')->group(function()
 {
     Route::controller(MovieController::class)->group(function () {
+        Route::get('/movie/genre', 'showGenre');
         Route::post('/movie/store', 'create');
         Route::post('/movie/rating', 'rateMovie');
     });
