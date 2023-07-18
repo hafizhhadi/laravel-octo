@@ -27,5 +27,10 @@ class MovieRepository
     {
         return Movie::searchMovieByPerformer($name);
     }
+
+    public function newMovie($date)
+    {
+        return Movie::newMovie($date);
+    }
 }
 
