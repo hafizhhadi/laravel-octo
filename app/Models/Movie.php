@@ -52,4 +52,16 @@ class Movie extends Model
     {
         return $this->hasMany(Screentime::class);
     }
+
+    public function scopeSearchMovieByPerformer($query, $name)
+    {
+        return $query->whereHas('performers', function($performer) use($name){
+            return $performer->where('name','like', '%' . $name . '%');
+        })->get();
+    }
+
+    public function scopeTotalMovieRating()
+    {
+        return round($this->ratings()->avg('rating'), 1);
+    }
 }
