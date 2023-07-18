@@ -19,6 +19,7 @@ Route::prefix('v1')->group(function()
 {
     Route::controller(MovieController::class)->group(function () {
         Route::get('/movie/genre', 'showGenre');
+        Route::get('/movie/search/performer', 'showPerformer');
         Route::post('/movie/store', 'create');
         Route::post('/movie/rating', 'rateMovie');
     });
