@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use App\Http\Resources\MovieResource;
 use App\Repositories\GenreRepository;
 use App\Repositories\MovieRepository;
 use App\Repositories\RatingRepository;
@@ -15,7 +16,6 @@ use App\Repositories\DirectorRepository;
 use App\Repositories\LanguageRepository;
 use App\Repositories\PerformerRepository;
 use App\Http\Resources\GenreMovieResource;
-use App\Http\Resources\PerformerMovieResource;
 
 class MovieController extends Controller
 {
@@ -133,7 +133,16 @@ class MovieController extends Controller
     public function showPerformer(Request $request)
     {
         try {
-            return $this->success(PerformerMovieResource::collection($this->movieRepo->searchPerformer($request->performer_name)), 'Successfully Search Movie By Performer '. $request->performer_name);
+            return $this->success(MovieResource::collection($this->movieRepo->searchPerformer($request->performer_name)), 'Successfully Search Movie By Performer '. $request->performer_name);
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function newMovie(Request $request)
+    {
+        try {
+            return $this->success(MovieResource::collection($this->movieRepo->newMovie($request->release_date)), 'Successfully Fetch Latest Movie');
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
