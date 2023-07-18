@@ -15,6 +15,7 @@ use App\Repositories\DirectorRepository;
 use App\Repositories\LanguageRepository;
 use App\Repositories\PerformerRepository;
 use App\Http\Resources\GenreMovieResource;
+use App\Http\Resources\PerformerMovieResource;
 
 class MovieController extends Controller
 {
@@ -124,6 +125,15 @@ class MovieController extends Controller
     {
         try {
             return $this->success(GenreMovieResource::collection($this->genreRepo->getMovieByGenre($request->genre)), 'Successfully Show Movie By Genre '.$request->genre);
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function showPerformer(Request $request)
+    {
+        try {
+            return $this->success(PerformerMovieResource::collection($this->movieRepo->searchPerformer($request->performer_name)), 'Successfully Search Movie By Performer '. $request->performer_name);
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
