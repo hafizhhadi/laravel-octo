@@ -17,5 +17,10 @@ class MovieRepository
             'release' => $request->release,
         ]);
     }
+
+    public function findMovieTitle($name)
+    {
+        return Movie::whereTitle($name)->first();
+    }
 }
 
