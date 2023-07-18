@@ -22,12 +22,14 @@ class MovieSeeder extends Seeder
                 'description' => 'A teenagers boy found out that his car is actually a robot',
                 'mpaa_rating' => 'PG-16',
                 'length' => '120',
+                'release' => '2023-07-18',
             ] , [
                 'director_id' => 2,
                 'title' => 'Transfomers: Revenge of the Fallen',
                 'description' => 'Megatron came back for his revenge',
                 'mpaa_rating' => 'PG-16',
                 'length' => '120',
+                'release' => '2023-07-19',
             ]
         ]);
     }
