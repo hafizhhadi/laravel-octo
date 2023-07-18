@@ -19,7 +19,8 @@ class Movie extends Model
         'title',
         'description',
         'mpaa_rating',
-        'length'
+        'length',
+        'release'
     ];
 
     public function director()
@@ -29,17 +30,17 @@ class Movie extends Model
 
     public function genres()
     {
-        return $this->belongsToMany(Genre::class, 'movie_genres', 'genre_id', 'movie_id');
+        return $this->belongsToMany(Genre::class, 'movie_genres', 'movie_id', 'genre_id')->withTimestamps();
     }
 
     public function languages()
     {
-        return $this->belongsToMany(Language::class, 'movie_languages', 'language_id', 'movie_id');
+        return $this->belongsToMany(Language::class, 'movie_languages', 'movie_id', 'language_id')->withTimestamps();
     }
 
     public function performers()
     {
-        return $this->belongsToMany(Performer::class, 'movie_performers', 'movie_id', 'performer_id');
+        return $this->belongsToMany(Performer::class, 'movie_performers', 'movie_id', 'performer_id')->withTimestamps();
     }
 
     public function ratings()

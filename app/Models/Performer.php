@@ -16,6 +16,6 @@ class Performer extends Model
 
     public function movies()
     {
-        return $this->belongsToMany(Movie::class, 'movie_performer', 'performer_id', 'movie_id');
+        return $this->belongsToMany(Movie::class, 'movie_performer', 'performer_id', 'movie_id')->withTimestamps();
     }
 }
