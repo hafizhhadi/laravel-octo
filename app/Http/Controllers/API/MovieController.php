@@ -7,8 +7,10 @@ use App\Traits\ResponseAPI;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
 use App\Repositories\GenreRepository;
 use App\Repositories\MovieRepository;
+use App\Repositories\RatingRepository;
 use App\Repositories\DirectorRepository;
 use App\Repositories\LanguageRepository;
 use App\Repositories\PerformerRepository;
@@ -22,13 +24,17 @@ class MovieController extends Controller
     private $genreRepo;
     private $performerRepo;
     private $languageRepo;
+    private $ratingRepo;
+    private $userRepo;
 
     public function __construct(
         MovieRepository $movieRepo,
         DirectorRepository $directorRepo,
         GenreRepository $genreRepo,
         PerformerRepository $performerRepo,
-        LanguageRepository $languageRepo
+        LanguageRepository $languageRepo,
+        RatingRepository $ratingRepo,
+        UserRepository $userRepo,
     )
     {
         $this->movieRepo = $movieRepo;
@@ -36,6 +42,8 @@ class MovieController extends Controller
         $this->genreRepo = $genreRepo;
         $this->performerRepo = $performerRepo;
         $this->languageRepo = $languageRepo;
+        $this->ratingRepo = $ratingRepo;
+        $this->userRepo = $userRepo;
     }
 
     public function create(Request $request)
@@ -84,6 +92,28 @@ class MovieController extends Controller
             $movie->languages()->sync($languagesId);
             
             return $this->created('Successfully added movie '.$movie->title.' with Movie_ID '.$movie->id);
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function rateMovie(Request $request)
+    {
+        try {
+            /*early return on finding user name*/
+            if (!$user = $this->userRepo->findUserName($request->username)) {
+                throw new Exception('User Not Found');
+            }
+
+            /*early return on movie title*/
+            if (!$movie = $this->movieRepo->findMovieTitle($request->movie_title)) {
+                throw new Exception('Movie Not Found');
+            }
+
+            /*create rating*/
+            $this->ratingRepo->store($request, $user->id, $movie->id);
+
+            return $this->created('Successfully added review for the '.$movie->title.' by user: '.$user->name);
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
