@@ -22,5 +22,10 @@ class MovieRepository
     {
         return Movie::whereTitle($name)->first();
     }
+
+    public function searchPerformer($name)
+    {
+        return Movie::searchMovieByPerformer($name);
+    }
 }
 
