@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Movie;
+use App\Models\Screentime;
 
 class MovieRepository
 {
@@ -31,6 +32,11 @@ class MovieRepository
     public function newMovie($date)
     {
         return Movie::newMovie($date);
+    }
+    
+    public function getScreentimeByDate($request, $theater)
+    {
+        return Screentime::where('start_date_time', $request->desired_date)->get();
     }
 }
 

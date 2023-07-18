@@ -11,6 +11,8 @@ class Screentime extends Model
 {
     use HasFactory;
 
+    protected $table = 'screentimes';
+
     protected $fillable = [
         'movie_id',
         'theater_id',

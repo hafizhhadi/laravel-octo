@@ -12,10 +12,12 @@ use App\Http\Resources\MovieResource;
 use App\Repositories\GenreRepository;
 use App\Repositories\MovieRepository;
 use App\Repositories\RatingRepository;
+use App\Repositories\TheaterRepository;
 use App\Repositories\DirectorRepository;
 use App\Repositories\LanguageRepository;
 use App\Repositories\PerformerRepository;
 use App\Http\Resources\GenreMovieResource;
+use App\Http\Resources\MovieTheaterResource;
 
 class MovieController extends Controller
 {
@@ -28,6 +30,7 @@ class MovieController extends Controller
     private $languageRepo;
     private $ratingRepo;
     private $userRepo;
+    private $theaterRepo;
 
     public function __construct(
         MovieRepository $movieRepo,
@@ -37,6 +40,7 @@ class MovieController extends Controller
         LanguageRepository $languageRepo,
         RatingRepository $ratingRepo,
         UserRepository $userRepo,
+        TheaterRepository $theaterRepo,
     )
     {
         $this->movieRepo = $movieRepo;
@@ -46,6 +50,7 @@ class MovieController extends Controller
         $this->languageRepo = $languageRepo;
         $this->ratingRepo = $ratingRepo;
         $this->userRepo = $userRepo;
+        $this->theaterRepo = $theaterRepo;
     }
 
     public function create(Request $request)
@@ -143,6 +148,20 @@ class MovieController extends Controller
     {
         try {
             return $this->success(MovieResource::collection($this->movieRepo->newMovie($request->release_date)), 'Successfully Fetch Latest Movie');
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function specificMovieTheater(Request $request)
+    {
+        try {
+            if (!$theater = $this->theaterRepo->getTheaterName($request->theater_name)) {
+                throw new Exception('Theater Not Found');
+            }
+
+            return $this->movieRepo->getScreentimeByDate($request, $theater);
+
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
