@@ -19,5 +19,6 @@ Route::prefix('v1')->group(function()
 {
     Route::controller(MovieController::class)->group(function () {
         Route::post('/movie/store', 'create');
+        Route::post('/movie/rating', 'rateMovie');
     });
 });
