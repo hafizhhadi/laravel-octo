@@ -64,4 +64,9 @@ class Movie extends Model
     {
         return round($this->ratings()->avg('rating'), 1);
     }
+
+    public function scopeNewMovie($query, $date)
+    {
+        return $query->where('release', '<=' , $date)->orderByDesc('release')->get();
+    }
 }
