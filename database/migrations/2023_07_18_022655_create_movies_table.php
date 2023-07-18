@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('mpaa_rating');
             $table->string('length');
+            $table->date('release');
             $table->timestamps();
         });
     }
