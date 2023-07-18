@@ -14,6 +14,7 @@ use App\Repositories\RatingRepository;
 use App\Repositories\DirectorRepository;
 use App\Repositories\LanguageRepository;
 use App\Repositories\PerformerRepository;
+use App\Http\Resources\GenreMovieResource;
 
 class MovieController extends Controller
 {
@@ -114,6 +115,15 @@ class MovieController extends Controller
             $this->ratingRepo->store($request, $user->id, $movie->id);
 
             return $this->created('Successfully added review for the '.$movie->title.' by user: '.$user->name);
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
+    public function showGenre(Request $request)
+    {
+        try {
+            return $this->success(GenreMovieResource::collection($this->genreRepo->getMovieByGenre($request->genre)), 'Successfully Show Movie By Genre '.$request->genre);
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
