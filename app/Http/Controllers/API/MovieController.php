@@ -159,9 +159,21 @@ class MovieController extends Controller
             if (!$theater = $this->theaterRepo->getTheaterName($request->theater_name)) {
                 throw new Exception('Theater Not Found');
             }
+            
+            return $this->success(MovieTheaterResource::collection($this->movieRepo->getScreentimeByDate($request, $theater)));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
 
-            return $this->movieRepo->getScreentimeByDate($request, $theater);
+    public function specificMovieTimeslot(Request $request)
+    {
+        try {
+            if (!$theater = $this->theaterRepo->getTheaterName($request->theater_name)) {
+                throw new Exception('Theater Not Found');
+            }
 
+            return $this->success(MovieTheaterResource::collection($this->movieRepo->getScreentimeByDate($request, $theater)));
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
