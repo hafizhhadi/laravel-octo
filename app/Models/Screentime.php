@@ -27,6 +27,19 @@ class Screentime extends Model
 
     public function theater()
     {
-        return $this->belongsTo(Theater::class);
+        return $this->belongsTo(Theater::class, 'theater_id');
+    }
+
+    public function scopeFilterByDate($query, $date)
+    {
+        return $query->whereDate('start_date_time', '=', $date);
+    }
+
+    public function scopeFilterByDateTime($query, $request)
+    {
+        return $query->where(function ($query) use ($request) {
+            $query->whereBetween('start_date_time', [$request->time_start, $request->time_end])
+                ->orWhereBetween('end_date_time', [$request->time_start, $request->time_end]);
+        });
     }
 }
