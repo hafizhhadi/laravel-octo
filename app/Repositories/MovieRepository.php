@@ -36,7 +36,17 @@ class MovieRepository
     
     public function getScreentimeByDate($request, $theater)
     {
-        return Screentime::where('start_date_time', $request->desired_date)->get();
+        if ($request->desired_date) {
+            $screentime = Screentime::filterByDate($request->desired_date);
+        } else {
+            $screentime = Screentime::filterByDateTime($request);
+        }
+
+        return $screentime->whereHas('theater', function ($query) use ($theater) {
+            return $query->where('name', $theater->name);
+        })
+        ->with(['movie', 'theater'])
+        ->get();
     }
 }
 
