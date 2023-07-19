@@ -28,6 +28,9 @@ Project Description :
 - Trait - ResponseAPI - Centralized format return data
 - API's specs (param & response) works exactly like RF-Infinite [Movie API Postman collection](https://raw.githubusercontent.com/pcari-onboard/laravel-octo/master/Movie%20API.postman_collection.json?token=AB5WC65UEEM3SCHPQ3SYPODBNZZ3A) . My Collection [Here!](https://raw.githubusercontent.com/hafizhhadi/laravel-octo/master/Movie%20API%20-%20Hafiz%20Hadi%20Collection.json)
 
+## ERD - Entity Relationship Diagram
+![Movie-ERD](https://github.com/hafizhhadi/laravel-octo/assets/93474461/c7cd6b96-3bae-4385-b086-c2c1e15a2171)
+
 ## Screenshots Response
 
 ### Add Movie
