@@ -15,13 +15,13 @@ class MovieTheaterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'Movie_ID' => $this->id,
-            'Title' => $this->TotalMovieRating(),
-            'Theater_name' =>  $this->Theater_name,
-            'Start_time' => $this->Start_time,
-            'End_time' => $this->End_time,
-            'Description' => $this->Description,
-            'Theater_room_no' => $this->Theater_room_no,
+            'Movie_ID' => $this->movie_id,
+            'Title' => $this->movie->title,
+            'Theater_name' => $this->theater->name,
+            'Start_time' => $this->start_date_time,
+            'End_time' => $this->end_date_time,
+            'Description' => $this->movie->description,
+            'Theater_room_no' => $this->id,
         ];
     }
 }
