@@ -22,6 +22,7 @@ Route::prefix('v1')->group(function()
         Route::get('/movie/search/performer', 'showPerformer');
         Route::get('/new/movie', 'newMovie');
         Route::get('/movie/specific/theater', 'specificMovieTheater');
+        Route::get('/movie/specific/timeslot', 'specificMovieTimeslot');
         Route::post('/movie/store', 'create');
         Route::post('/movie/rating', 'rateMovie');
     });
