@@ -6,7 +6,9 @@ use Exception;
 use App\Traits\ResponseAPI;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Http\Requests\MovieRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RatingRequest;
 use App\Repositories\UserRepository;
 use App\Http\Resources\MovieResource;
 use App\Repositories\GenreRepository;
@@ -53,7 +55,7 @@ class MovieController extends Controller
         $this->theaterRepo = $theaterRepo;
     }
 
-    public function create(Request $request)
+    public function create(MovieRequest $request)
     {
         try {
             /*early return on getting director name, else create new*/
@@ -104,7 +106,7 @@ class MovieController extends Controller
         }
     }
 
-    public function rateMovie(Request $request)
+    public function rateMovie(RatingRequest $request)
     {
         try {
             /*early return on finding user name*/
@@ -129,6 +131,7 @@ class MovieController extends Controller
     public function showGenre(Request $request)
     {
         try {
+            /*get movie by genre*/
             return $this->success(GenreMovieResource::collection($this->genreRepo->getMovieByGenre($request->genre)), 'Successfully Show Movie By Genre '.$request->genre);
         } catch (Exception $e) {
             return $this->error($e->getMessage());
@@ -138,6 +141,7 @@ class MovieController extends Controller
     public function showPerformer(Request $request)
     {
         try {
+            /*search performer*/
             return $this->success(MovieResource::collection($this->movieRepo->searchPerformer($request->performer_name)), 'Successfully Search Movie By Performer '. $request->performer_name);
         } catch (Exception $e) {
             return $this->error($e->getMessage());
@@ -147,6 +151,7 @@ class MovieController extends Controller
     public function newMovie(Request $request)
     {
         try {
+            /*fetch latest by movie*/
             return $this->success(MovieResource::collection($this->movieRepo->newMovie($request->release_date)), 'Successfully Fetch Latest Movie');
         } catch (Exception $e) {
             return $this->error($e->getMessage());
@@ -156,11 +161,13 @@ class MovieController extends Controller
     public function specificMovieTheater(Request $request)
     {
         try {
+            /*early return on finding theater name*/
             if (!$theater = $this->theaterRepo->getTheaterName($request->theater_name)) {
                 throw new Exception('Theater Not Found');
             }
-            
-            return $this->success(MovieTheaterResource::collection($this->movieRepo->getScreentimeByDate($request, $theater)));
+
+            /*fetch specific movie by theater and date*/
+            return $this->success(MovieTheaterResource::collection($this->movieRepo->getScreentimeByDate($request, $theater)), 'Sucessfully Fetch Movies By Date!');
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
@@ -169,11 +176,13 @@ class MovieController extends Controller
     public function specificMovieTimeslot(Request $request)
     {
         try {
+            /*early return on finding theater name*/
             if (!$theater = $this->theaterRepo->getTheaterName($request->theater_name)) {
                 throw new Exception('Theater Not Found');
             }
 
-            return $this->success(MovieTheaterResource::collection($this->movieRepo->getScreentimeByDate($request, $theater)));
+            /*fetch specific movie by theater and date and time*/
+            return $this->success(MovieTheaterResource::collection($this->movieRepo->getScreentimeByDate($request, $theater)), 'Sucessfully Fetch Movies By Date and Time');
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
