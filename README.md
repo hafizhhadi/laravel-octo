@@ -26,8 +26,9 @@ Project Description :
 - Report Helper - Report an exception via the exception handler without rendering an error page to the user
 - Single Responsibility Principle (SRP) - For function reusability
 - Trait - ResponseAPI - Centralized format return data
+- API's specs (param & response) works exactly like RF-Infinite [Movie API Postman collection](https://raw.githubusercontent.com/pcari-onboard/laravel-octo/master/Movie%20API.postman_collection.json?token=AB5WC65UEEM3SCHPQ3SYPODBNZZ3A) . My Collection [Here!](https://raw.githubusercontent.com/hafizhhadi/laravel-octo/master/Movie%20API%20-%20Hafiz%20Hadi%20Collection.json)
 
-## Screenshots 
+## Screenshots Response
 
 ### Add Movie
 #### Pcari Response
