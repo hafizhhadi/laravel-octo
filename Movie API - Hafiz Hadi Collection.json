@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "c7f07e35-1e7d-4027-b0f6-cd7f3154429c",
+		"name": "Movie API - New",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28576250",
+		"_collection_link": "https://rf-infinite.postman.co/workspace/Team-Workspace~71843981-4d1d-40de-8afb-41799956b41f/collection/28576250-c7f07e35-1e7d-4027-b0f6-cd7f3154429c?action=share&creator=28576250&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Give Rating",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "movie_title",
+							"value": "Transfomers",
+							"description": "Title of the movie being reviewed",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Azri Irfan",
+							"description": "Username of the user creating the review",
+							"type": "text"
+						},
+						{
+							"key": "rating",
+							"value": "6.7",
+							"description": "Rating of the movie",
+							"type": "text"
+						},
+						{
+							"key": "rating_description",
+							"value": "A masterpiece!",
+							"description": "Description of the rating",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/movie/rating",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"rating"
+					]
+				},
+				"description": "This endpoint can be used when a user wants to give a rating and/or review for a specific movie. \n\nThe parameter 'movie_title' specifies the user’s desired movie which they want to leave a rating/review for. The parameter 'username' takes the username of the user leaving the review. The parameter 'rating' is a numerical value ranging from 1-10. The parameter 'r_description' is for users to leave a description for their rating. \n\nFor example, if movie_title = “The Irishman” the user can leave a review for it. Error messages are returned if adding a review fails (i.e. Forgetting to leave a numerical rating). Success messages are given for users that successfully post a review."
+			},
+			"response": []
+		},
+		{
+			"name": "Add movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "The King's Man AB",
+							"description": "Title of the movie that we are going to add",
+							"type": "text"
+						},
+						{
+							"key": "release",
+							"value": "2023-07-18",
+							"description": "Release date of the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "98",
+							"description": "Length of the movie that we are adding (in minutes)",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "As a collection of history's worst tyrants and criminal masterminds gather to plot a war to wipe out millions, one man must race against time to stop them.",
+							"description": "Description of the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "mpaa_rating",
+							"value": "PG-13",
+							"description": "MPAA rating of the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "genres[]",
+							"value": "Action",
+							"description": "First genre of the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "genres[]",
+							"value": "Adventure",
+							"description": "Second genre of the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "genres[]",
+							"value": "Comedy",
+							"description": "Third genre of the movie that we are adding",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "director",
+							"value": "Ashley Morgan",
+							"description": "Director name of the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "performers[]",
+							"value": "Gemma Arterton",
+							"description": "Performer in the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "performers[]",
+							"value": "Matthew Goode",
+							"description": "Performer in the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "performers[]",
+							"value": "Ralph Fiennes",
+							"description": "Performer in the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "languages[]",
+							"value": "English",
+							"description": "Language of the movie that we are adding",
+							"type": "text"
+						},
+						{
+							"key": "languages[]",
+							"value": "Mandarin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/movie/store",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"store"
+					]
+				},
+				"description": "This endpoint can be used by movie studios and independent film creators to add their movies to the database. The entries that are created will be made visible to the users to access information regarding movies they can watch. The body should contain the fields listed below and some of the parameters can be multiple values (a list) and these special (multi) parameters are genre, director, performer, and language."
+			},
+			"response": []
+		},
+		{
+			"name": "Genre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/movie/genre?genre=Comedy",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"genre"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "Comedy",
+							"description": "specifies the genre for which movies are retrieved"
+						}
+					]
+				},
+				"description": "The Genre endpoint can be used to retrieve all movies of a certain genre currently showing in theatres. This endpoint can only be used by a Regular User and not an Admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Performer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/movie/search/performer?performer_name=Keanu Reeve",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"search",
+						"performer"
+					],
+					"query": [
+						{
+							"key": "performer_name",
+							"value": "Keanu Reeve"
+						}
+					]
+				},
+				"description": "This endpoint can be used when a user wants to retrieve all movies a movie performer performs in.\n\nThe parameter 'performer_name' takes the name of the performer the user wishes to search as a parameter.\n\nFor example if performerName is “Al Pacino” all movies showing Al Pacino are retrieved."
+			},
+			"response": []
+		},
+		{
+			"name": "New Movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/new/movie/?release_date=2023-07-20",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"new",
+						"movie",
+						""
+					],
+					"query": [
+						{
+							"key": "release_date",
+							"value": "2023-07-20"
+						}
+					]
+				},
+				"description": "This endpoint can be used when a user wants to see the new movies that have recently come out. \n\nThe parameter 'r_date' specifies the date that the user would like to see which new movies have come out at that point in time. \nFor example, if r_date = 2020-01-01, then it will return a list of movies that have come out before that date, sorting by which movies are closest to the date."
+			},
+			"response": []
+		},
+		{
+			"name": "Specific Movie Theater",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/movie/specific/theater?theater_name=Green Screen Cinema&desired_date=2023-07-19",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"specific",
+						"theater"
+					],
+					"query": [
+						{
+							"key": "theater_name",
+							"value": "Green Screen Cinema",
+							"description": "specifies desired theater to search movies for"
+						},
+						{
+							"key": "desired_date",
+							"value": "2023-07-19",
+							"description": "specifies desired date to search movie for"
+						}
+					]
+				},
+				"description": "This endpoint can be used when a user wants to retrieve all movies showing on a certain date at a specific theatre. This endpoint can only be used by Regular Users and not Admins"
+			},
+			"response": []
+		},
+		{
+			"name": "TimeSlot",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/movie/specific/timeslot/?theater_name=Green Screen Cinema&time_start=2023-08-10 10:00:00&time_end=2023-08-10 14:00:00",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"specific",
+						"timeslot",
+						""
+					],
+					"query": [
+						{
+							"key": "theater_name",
+							"value": "Green Screen Cinema",
+							"description": "desired theater name to search for movie"
+						},
+						{
+							"key": "time_start",
+							"value": "2023-08-10 10:00:00",
+							"description": "datetime (yyyy-mm-dd hh:mm:ss) specifying the begining of the search window"
+						},
+						{
+							"key": "time_end",
+							"value": "2023-08-10 14:00:00",
+							"description": "dateime (yyyy-mm-dd hh:mm:ss) specifying the end of the search window"
+						}
+					]
+				},
+				"description": "The Timeslot endpoint can be used when a user wants to retrieve all movies showing within a certain time window in a specific theatre. This endpoint can only be used by Regular Users and not Admins"
+			},
+			"response": []
+		}
+	]
+}
