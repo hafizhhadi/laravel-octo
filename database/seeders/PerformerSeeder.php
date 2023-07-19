@@ -18,8 +18,12 @@ class PerformerSeeder extends Seeder
         DB::table('performers')->insert([
             [
                 'name' => 'Keanu Reeve',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
-                'name' => 'Jessica Chamber'
+                'name' => 'Jessica Chamber',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

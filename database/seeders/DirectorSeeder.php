@@ -18,9 +18,18 @@ class DirectorSeeder extends Seeder
         DB::table('directors')->insert([
             [
                 'name' => 'Ashley Morgan',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
-                'name' => 'Danny Yale'
+                'name' => 'Danny Yale',
+                'created_at' => now(),
+                'updated_at' => now()
+            ] , [
+                'name' => 'Michael Bay',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
+            
         ]);
     }
 }

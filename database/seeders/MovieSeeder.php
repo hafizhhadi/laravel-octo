@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Movie;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,6 +24,8 @@ class MovieSeeder extends Seeder
                 'mpaa_rating' => 'PG-16',
                 'length' => '120',
                 'release' => '2023-07-18',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
                 'director_id' => 2,
                 'title' => 'Transfomers: Revenge of the Fallen',
@@ -30,7 +33,11 @@ class MovieSeeder extends Seeder
                 'mpaa_rating' => 'PG-16',
                 'length' => '120',
                 'release' => '2023-07-19',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
+
+        Movie::factory()->count(10)->create();
     }
 }

@@ -18,8 +18,12 @@ class LanguageSeeder extends Seeder
         DB::table('languages')->insert([
             [
                 'name' => 'English',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
-                'name' => 'Mandarin'
+                'name' => 'Mandarin',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

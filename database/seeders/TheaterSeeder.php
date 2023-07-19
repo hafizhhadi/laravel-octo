@@ -18,8 +18,12 @@ class TheaterSeeder extends Seeder
         DB::table('theaters')->insert([
             [
                 'name' => 'ABC Movies',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
-                'name' => 'Green Scene Cinema'
+                'name' => 'Green Screen Cinema',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

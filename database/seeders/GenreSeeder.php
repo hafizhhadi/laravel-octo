@@ -18,8 +18,12 @@ class GenreSeeder extends Seeder
         DB::table('genres')->insert([
             [
                 'name' => 'Comedy',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
-                'name' => 'Horror'
+                'name' => 'Horror',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

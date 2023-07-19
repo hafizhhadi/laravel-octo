@@ -17,15 +17,47 @@ class ScreentimeSeeder extends Seeder
     {
         DB::table('screentimes')->insert([
             [
-                'movie_id' => 1,
+                'movie_id' => 12,
                 'theater_id' => 1,
-                'start_date_time' => '2023-04-21 15:00:00',
-                'end_date_time' => '2023-04-21 17:00:00',
+                'start_date_time' => '2023-07-20 15:00:00',
+                'end_date_time' => '2023-07-20 17:00:00',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
                 'movie_id' => 2,
                 'theater_id' => 1,
-                'start_date_time' => '2023-04-21 21:00:00',
-                'end_date_time' => '2023-04-21 23:00:00',
+                'start_date_time' => '2023-07-21 21:00:00',
+                'end_date_time' => '2023-07-21 23:00:00',
+                'created_at' => now(),
+                'updated_at' => now()
+            ] , [
+                'movie_id' => 1,
+                'theater_id' => 1,
+                'start_date_time' => '2023-07-19 21:00:00',
+                'end_date_time' => '2023-07-19 23:00:00',
+                'created_at' => now(),
+                'updated_at' => now()
+            ] , [
+                'movie_id' => 12,
+                'theater_id' => 1,
+                'start_date_time' => '2023-06-21 21:00:00',
+                'end_date_time' => '2023-06-21 23:00:00',
+                'created_at' => now(),
+                'updated_at' => now()
+            ] , [
+                'movie_id' => 5,
+                'theater_id' => 2,
+                'start_date_time' => '2023-08-10 12:00:00',
+                'end_date_time' => '2023-08-10 14:00:00',
+                'created_at' => now(),
+                'updated_at' => now()
+            ] , [
+                'movie_id' => 7,
+                'theater_id' => 2,
+                'start_date_time' => '2023-08-10 12:00:00',
+                'end_date_time' => '2023-08-10 14:00:00',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

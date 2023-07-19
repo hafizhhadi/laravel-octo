@@ -20,9 +20,13 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Hafiz Hadi',
                 'email' => 'hafizhadi@gmail.com',
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
                 'name' => 'Azri Irfan',
                 'email' => 'azriirfan@gmail.com',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

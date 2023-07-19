@@ -19,12 +19,18 @@ class MoviePerformerSeeder extends Seeder
             [
                 'movie_id' => 1,
                 'performer_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
                 'movie_id' => 1,
                 'performer_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ] , [
                 'movie_id' => 2,
                 'performer_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }
