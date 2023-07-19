@@ -29,3 +29,4 @@ Project Description :
 
 ## Screenshots 
 
+![Add Movie](https://github.com/hafizhhadi/laravel-octo/assets/93474461/ffbe0222-268e-4d80-a215-3c2f1ca32e42)
